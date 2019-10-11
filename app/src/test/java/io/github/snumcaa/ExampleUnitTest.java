@@ -1,4 +1,4 @@
-package io.github.hyunminch;
+package io.github.snumcaa;
 
 import org.junit.Test;
 
