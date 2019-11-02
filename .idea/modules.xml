@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/snu-mcaa-project-app-app.iml" filepath="$PROJECT_DIR$/app/snu-mcaa-project-app-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/snu-mcaa-project-app-videosharex.iml" filepath="$PROJECT_DIR$/snu-mcaa-project-app-videosharex.iml" />
       <module fileurl="file://$PROJECT_DIR$/videosharex.iml" filepath="$PROJECT_DIR$/videosharex.iml" />
     </modules>
   </component>
