@@ -14,10 +14,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ImageView bgapp, vicon;
+    private Animation frombottom, bgMoveUp;
+
+    private ImageView vicon;
     private LinearLayout textsplash;
-    private ConstraintLayout texthome;
-    private Animation frombottom;
+    private ConstraintLayout texthome, background;
     private Button loginButton;
 
 
@@ -30,8 +31,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             getSupportActionBar().hide();
 
         frombottom = AnimationUtils.loadAnimation(this, R.anim.frombottom);
+        bgMoveUp = AnimationUtils.loadAnimation(this, R.anim.bg_moveup);
 
-        bgapp = (ImageView) findViewById(R.id.bgapp);
+        background = (ConstraintLayout) findViewById(R.id.bgapp);
         vicon = (ImageView) findViewById(R.id.vicon);
         textsplash = (LinearLayout) findViewById(R.id.textsplash);
         texthome = (ConstraintLayout) findViewById(R.id.texthome);
@@ -39,8 +41,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
 
-        bgapp.animate()
-                .translationY(-1700).setDuration(800).setStartDelay(800);
+        background.startAnimation(bgMoveUp);
         vicon.animate()
                 .alpha(0).setDuration(800).setStartDelay(800);
         textsplash.animate()
