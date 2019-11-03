@@ -175,11 +175,10 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="952" />
-    <option name="y" value="407" />
-    <option name="width" value="1890" />
-    <option name="height" value="2184" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1963" />
+    <option name="width" value="1887" />
+    <option name="height" value="2172" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -248,6 +247,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
