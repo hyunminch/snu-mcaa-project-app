@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="io.github.snumcaa.ui.videofeed.VideoFeedFragment"
-        android:label="@string/title_videofeed"
+        android:label="@string/title_video_feed"
         tools:layout="@layout/fragment_video_feed" />
 
     <fragment
