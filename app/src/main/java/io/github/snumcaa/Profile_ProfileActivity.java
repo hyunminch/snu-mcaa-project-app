@@ -11,4 +11,9 @@ public class Profile_ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile_profile);
     }
 
+    @Override
+    public void onBackPressed(){
+        super.onBackPressed();
+        overridePendingTransition(R.anim.stay, R.anim.exit_right);
+    }
 }

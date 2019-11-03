@@ -2,6 +2,7 @@ package io.github.snumcaa;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void profileClicked(View view){
-        Intent intent = new Intent(MainActivity.this, Profile_ProfileActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, Profile_ProfileActivity.class));
+        overridePendingTransition(R.anim.enter_right, R.anim.stay);
     }
 }
