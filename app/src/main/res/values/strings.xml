@@ -3,4 +3,5 @@
     <string name="title_video_feed">Video Feed</string>
     <string name="title_profile">Profile</string>
     <string name="title_notifications">Notifications</string>
+    <string name="share_button">SHARE</string>
 </resources>
