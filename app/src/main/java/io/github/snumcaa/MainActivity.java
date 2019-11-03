@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void profileClicked(View view){
-        Intent intent = new Intent(MainActivity.this, Profile_ProfileActivity.class);
-        startActivity(intent);
+        startActivity(new Intent(this, Profile_ProfileActivity.class));
+        overridePendingTransition(R.anim.enter_right, R.anim.nav_default_exit_anim);
     }
 }
