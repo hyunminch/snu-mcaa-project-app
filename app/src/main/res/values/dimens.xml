@@ -3,7 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fragment_profile_button_margin">64dp</dimen>
-<<<<<<< HEAD
     <dimen name="fragment_profile_button_padding">15dp</dimen>
     <dimen name="fragment_profile_bar_margin">64dp</dimen>
     <dimen name="fragment_profile_button_font_size">20sp</dimen>
@@ -15,12 +14,4 @@
     <dimen name="profile_profile_button_icon_size">24dp</dimen>
     <dimen name="profile_profile_button_font_size">20sp</dimen>
     <dimen name="profile_profile_button_line_padding">5dp</dimen>
-=======
-    <dimen name="fragment_profile_button_padding">0dp</dimen>
-    <dimen name="fragment_profile_bar_margin">64dp</dimen>
-    <dimen name="fragment_profile_bar_margin_v">0dp</dimen>
-    <dimen name="fragment_profile_button_font_size">20sp</dimen>
-    <dimen name="fragment_profile_user_name_font_size">30sp</dimen>
-    <dimen name="fragment_profile_bottom_margin">256dp</dimen>
->>>>>>> b68ae9a81bd6324166ec9e1e9999089c7ea3fadb
 </resources>
