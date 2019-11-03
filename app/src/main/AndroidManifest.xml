@@ -9,11 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".TextEditActivity"></activity>
         <activity
             android:name=".Profile_ProfileActivity"
             android:label="@string/title_activity_profile_profile"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.SlidrActivityTheme" />
         <activity
             android:name=".Profile_SettingActivity"
             android:label="@string/title_activity_profile_setting"
@@ -28,7 +29,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

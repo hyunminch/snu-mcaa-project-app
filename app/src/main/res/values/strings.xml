@@ -17,8 +17,6 @@
     <string name="profile_profile_userName">User Name</string>
     <string name="profile_profile_bio">Bio</string>
     <string name="profile_profile_whatsUp">What\'s Up</string>
-    <string name="global_user_status">offline</string>
-    <string name="global_user_name">New User</string>
-    <string name="global_whats_up"></string>
-    <string name="global_bio"></string>
+    <string name="user_status_offline">offline</string>
+    <string name="blank"></string>
 </resources>
