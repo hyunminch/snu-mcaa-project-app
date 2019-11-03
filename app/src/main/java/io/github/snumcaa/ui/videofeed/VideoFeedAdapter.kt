@@ -12,23 +12,22 @@ import io.github.snumcaa.domain.entities.YouTubeVideo
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import io.github.snumcaa.domain.repositories.YouTubeVideoRecommendationResponse
 
 class VideoFeedAdapter(val context: Context?, val viewModel: VideoFeedViewModel): RecyclerView.Adapter<YouTubeVideoViewHolder>() {
-    val youTubeVideos: List<YouTubeVideo> =
-            listOf(
-                    YouTubeVideo("7BJ7MDOmLPE", "zhiyuan", null),
-                    YouTubeVideo("GhDnyPsQsB0", "hyunmin", "I'm developing an Android app using Android Studio and Kotlin. This is tough."),
-                    YouTubeVideo("6viSZCnIpPY", "locky", null),
-                    YouTubeVideo("7BJ7MDOmLPE", "matchy", null),
-                    YouTubeVideo("6viSZCnIpPY", "soomi", null)
-            )
+    var videos: List<YouTubeVideo> = emptyList()
+
+    fun setYouTubeVideos(videos: List<YouTubeVideo>) {
+        this.videos = videos
+        notifyDataSetChanged()
+    }
 
     override fun getItemCount(): Int {
-        return youTubeVideos.size
+        return videos.size
     }
 
     override fun onBindViewHolder(holder: YouTubeVideoViewHolder, position: Int) {
-        holder.bind(youTubeVideos[position])
+        holder.bind(videos[position])
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): YouTubeVideoViewHolder {
