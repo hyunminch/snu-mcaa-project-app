@@ -34,4 +34,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, Profile_ProfileActivity.class));
         overridePendingTransition(R.anim.enter_right, R.anim.stay);
     }
+
+    public void settingClicked(View view){
+        startActivity(new Intent(this, Profile_SettingActivity.class));
+        overridePendingTransition(R.anim.enter_right, R.anim.stay);
+    }
+
 }

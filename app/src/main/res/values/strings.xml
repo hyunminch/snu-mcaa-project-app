@@ -11,6 +11,7 @@
     <string name="profile_profileImage_description">User\'s avatar</string>
     <string name="profile_default_user_name">New User</string>
     <string name="title_activity_profile_profile">Profile</string>
+    <string name="title_activity_profile_setting">Setting</string>
     <string name="settings_theme_color">Theme Color</string>
     <string name="profile_profile_userIcon">User Icon</string>
     <string name="profile_profile_userName">User Name</string>
