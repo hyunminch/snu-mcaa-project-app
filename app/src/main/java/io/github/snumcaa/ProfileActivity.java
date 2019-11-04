@@ -17,7 +17,7 @@ import com.r0adkll.slidr.Slidr;
 
 import org.w3c.dom.Text;
 
-public class Profile_ProfileActivity extends FragmentActivity {
+public class ProfileActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

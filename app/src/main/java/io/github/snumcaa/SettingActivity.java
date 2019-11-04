@@ -7,7 +7,7 @@ import android.widget.CompoundButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
-public class Profile_SettingActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
+public class SettingActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
