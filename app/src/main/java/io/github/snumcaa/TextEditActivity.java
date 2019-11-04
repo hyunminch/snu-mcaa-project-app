@@ -15,6 +15,5 @@ public class TextEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_text_edit);
         Slidr.attach(this);
         Intent intent = getIntent();
-
     }
 }

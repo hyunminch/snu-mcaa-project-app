@@ -6,4 +6,3 @@ interface YouTubeVideoRepository {
     @GET("api/videos/recommendation/")
     suspend fun getVideoRecommendations(): List<YouTubeVideoRecommendationResponse>
 }
-
