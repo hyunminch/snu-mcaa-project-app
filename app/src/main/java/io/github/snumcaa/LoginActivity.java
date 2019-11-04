@@ -13,14 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private Animation frombottom, bgMoveUp, fadeOut;
+    private Animation fromBottom, bgMoveUp, fadeOut;
 
     private ImageView vicon;
-    private LinearLayout textsplash;
-    private ConstraintLayout texthome, background;
+    private LinearLayout textSplash;
+    private ConstraintLayout textHome, background;
     private Button loginButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,23 +28,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (getSupportActionBar() != null)
             getSupportActionBar().hide();
 
-        frombottom = AnimationUtils.loadAnimation(this, R.anim.frombottom);
+        fromBottom = AnimationUtils.loadAnimation(this, R.anim.from_bottom);
         bgMoveUp = AnimationUtils.loadAnimation(this, R.anim.bg_moveup);
         fadeOut = AnimationUtils.loadAnimation(this, R.anim.fade_out);
 
         background = (ConstraintLayout) findViewById(R.id.bgapp);
         vicon = (ImageView) findViewById(R.id.vicon);
-        textsplash = (LinearLayout) findViewById(R.id.textsplash);
-        texthome = (ConstraintLayout) findViewById(R.id.texthome);
+        textSplash = (LinearLayout) findViewById(R.id.text_splash);
+        textHome = (ConstraintLayout) findViewById(R.id.text_home);
         loginButton = (Button) findViewById(R.id.login_button);
-
-
 
         background.startAnimation(bgMoveUp);
         vicon.startAnimation(fadeOut);
-        textsplash.startAnimation(fadeOut);
+        textSplash.startAnimation(fadeOut);
 
-        texthome.startAnimation(frombottom);
+        textHome.startAnimation(fromBottom);
 
         loginButton.setOnClickListener(this);
     }
