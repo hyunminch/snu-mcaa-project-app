@@ -10,7 +10,7 @@ class BasicAuthClient<T> {
             .addInterceptor(BasicAuthInterceptor("test_user", "snu_mcaa"))
             .build()
 
-    val gson = GsonBuilder()
+    private val gson = GsonBuilder()
             .setLenient()
             .create();
 

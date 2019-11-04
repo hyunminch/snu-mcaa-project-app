@@ -12,7 +12,6 @@ import io.github.snumcaa.domain.entities.YouTubeVideo
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerCallback
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-import io.github.snumcaa.domain.repositories.YouTubeVideoRecommendationResponse
 
 class VideoFeedAdapter(val context: Context?, val viewModel: VideoFeedViewModel): RecyclerView.Adapter<YouTubeVideoViewHolder>() {
     var videos: List<YouTubeVideo> = emptyList()
