@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="io.github.snumcaa.ProfileActivity"
+    tools:showIn="@layout/activity_profile_profile">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/profile_username_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/profile_profile_button_icon_padding"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/username_icon_24dp" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@id/profile_username_icon"
+                    app:layout_constraintStart_toEndOf="@id/profile_username_icon"
+                    app:layout_constraintTop_toTopOf="@id/profile_username_icon">
+
+                    <TextView
+                        android:id="@+id/profile_username"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingTop="@dimen/profile_profile_button_line_padding"
+                        android:paddingBottom="@dimen/profile_profile_button_line_padding"
+                        android:text="@string/profile_profile_userName"
+                        android:textSize="@dimen/profile_profile_button_font_size"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/profile_default_user_name"
+                        android:textColor="#8E8E8E"
+                        android:textStyle="italic"
+                        app:layout_constraintStart_toStartOf="@id/profile_username"
+                        app:layout_constraintTop_toBottomOf="@id/profile_username" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#000000"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground"
+                >
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/profile_whatsUp_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:padding="@dimen/profile_profile_button_icon_padding"
+                    app:srcCompat="@drawable/whatsup_icon_24dp" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/profile_whatsUp_icon"
+                    app:layout_constraintTop_toTopOf="@id/profile_whatsUp_icon"
+                    app:layout_constraintBottom_toBottomOf="@id/profile_whatsUp_icon"
+                    >
+                    <TextView
+                        android:id="@+id/profile_whatsUp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingTop="@dimen/profile_profile_button_line_padding"
+                        android:paddingBottom="@dimen/profile_profile_button_line_padding"
+                        android:text="@string/profile_profile_whatsUp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:textSize="@dimen/profile_profile_button_font_size"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/blank"
+                        app:layout_constraintTop_toBottomOf="@id/profile_whatsUp"
+                        app:layout_constraintStart_toStartOf="@id/profile_whatsUp"
+                        android:textStyle="italic"
+                        android:textColor="#8E8E8E"
+                        />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#000000"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground"
+                >
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/profile_bio_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:padding="@dimen/profile_profile_button_icon_padding"
+                    app:srcCompat="@drawable/bio_icon_24dp" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toEndOf="@id/profile_bio_icon"
+                    app:layout_constraintTop_toTopOf="@id/profile_bio_icon"
+                    app:layout_constraintBottom_toBottomOf="@id/profile_bio_icon"
+                    >
+                    <TextView
+                        android:id="@+id/profile_bio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingTop="@dimen/profile_profile_button_line_padding"
+                        android:paddingBottom="@dimen/profile_profile_button_line_padding"
+                        android:text="@string/profile_profile_bio"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:textSize="@dimen/profile_profile_button_font_size"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/blank"
+                        app:layout_constraintTop_toBottomOf="@id/profile_bio"
+                        app:layout_constraintStart_toStartOf="@id/profile_bio"
+                        android:textStyle="italic"
+                        android:textColor="#8E8E8E"
+                        />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
