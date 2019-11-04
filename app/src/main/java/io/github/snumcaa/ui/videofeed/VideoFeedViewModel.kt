@@ -1,23 +1,27 @@
 package io.github.snumcaa.ui.videofeed
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 
 import io.github.snumcaa.domain.entities.YouTubeVideo
+import io.github.snumcaa.domain.repositories.YouTubeVideoRepository
+import io.github.snumcaa.networking.BasicAuthClient
+import kotlinx.coroutines.Dispatchers
 
 class VideoFeedViewModel: ViewModel() {
-    val text: LiveData<String> by lazy {
-        val mutableLiveData = MutableLiveData<String>()
-        mutableLiveData.value = "Alcatraz"
-        mutableLiveData
-    }
+    private val youTubeVideoRepository: YouTubeVideoRepository = BasicAuthClient<YouTubeVideoRepository>().create(YouTubeVideoRepository::class.java)
 
-    val videos: LiveData<List<YouTubeVideo>> by lazy {
-        val mutableLiveData = MutableLiveData<List<YouTubeVideo>>()
-        mutableLiveData.value = listOf()
-        mutableLiveData
+    fun getVideos(): LiveData<List<YouTubeVideo>> {
+        return liveData(Dispatchers.IO) {
+            val videos = youTubeVideoRepository.getVideoRecommendations()
+            emit(videos.map {
+                YouTubeVideo(
+                        it.videoId,
+                        it.posterUsername,
+                        it.text
+                )
+            })
+        }
     }
 
     override fun onCleared() {
