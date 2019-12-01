@@ -1,6 +1,8 @@
 package io.github.snumcaa;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -17,6 +19,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //test
+//        SharedPreferences pref = this.getSharedPreferences(
+//                getString(R.string.shared_preference_id),
+//                Context.MODE_PRIVATE
+//        );
+//        SharedPreferences.Editor editor = pref.edit();
+//        editor.putString("usr_name", "dududu");
+//        editor.commit();
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
