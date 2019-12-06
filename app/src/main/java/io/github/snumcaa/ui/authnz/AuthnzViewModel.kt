@@ -15,13 +15,28 @@ class AuthnzViewModel: ViewModel() {
     private val userRepository: UserRepository =
             BasicAuthClient<UserRepository>().createNoAuth(UserRepository::class.java)
 
-    fun signUp(username: String, password: String): LiveData<Unit> {
-        return liveData(Dispatchers.IO) { emit(userRepository.signUp(SignUp(username, password))) }
+    fun signUp(username: String, password: String): LiveData<SignUpResult> {
+        return liveData(Dispatchers.IO) {
+            try {
+                userRepository.signUp(SignUp(username, password))
+                emit(SignUpResult(false))
+            } catch (e: Exception) {
+                emit(SignUpResult(true))
+            }
+        }
     }
 
-    fun signIn(context: Context): LiveData<Unit> {
+    fun signIn(context: Context): LiveData<SignInResult> {
         val authRepository = BasicAuthClient<UserRepository>().createAuth(UserRepository::class.java, context)
-        return liveData(Dispatchers.IO) { emit(authRepository.signIn()) }
+
+        return liveData(Dispatchers.IO) {
+            try {
+                authRepository.signIn()
+                emit(SignInResult(false))
+            } catch (e: Exception) {
+                emit(SignInResult(true))
+            }
+        }
     }
 
     override fun onCleared() {

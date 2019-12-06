@@ -3,6 +3,7 @@ package io.github.snumcaa.ui.authnz;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -74,11 +75,14 @@ public class AuthnzActivity extends AppCompatActivity implements View.OnClickLis
 
         viewModel
                 .signUp(usernameText, passwordText)
-                .observe(this, new Observer<Unit>() {
+                .observe(this, new Observer<SignUpResult>() {
                     @Override
-                    public void onChanged(Unit unit) {
-                        if (unit != null)
+                    public void onChanged(SignUpResult result) {
+                        if (result.getFailed()) {
+                            // TODO: do something
+                        } else {
                             onSignedUp(usernameText, passwordText);
+                        }
                     }
                 });
     }
@@ -103,11 +107,14 @@ public class AuthnzActivity extends AppCompatActivity implements View.OnClickLis
         if (username != null && password != null) {
             viewModel
                     .signIn(getApplicationContext())
-                    .observe(this, new Observer<Unit>() {
+                    .observe(this, new Observer<SignInResult>() {
                         @Override
-                        public void onChanged(Unit unit) {
-                            if (unit != null)
+                        public void onChanged(SignInResult result) {
+                            if (!result.getFailed()) {
                                 onSignedIn();
+                            } else {
+                                Log.i("AuthnzActivity", "SignIn failed.");
+                            }
                         }
                     });
         }
