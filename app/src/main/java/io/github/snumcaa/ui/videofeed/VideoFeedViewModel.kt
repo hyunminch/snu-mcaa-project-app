@@ -9,7 +9,8 @@ import io.github.snumcaa.networking.BasicAuthClient
 import kotlinx.coroutines.Dispatchers
 
 class VideoFeedViewModel: ViewModel() {
-    private val youTubeVideoRepository: YouTubeVideoRepository = BasicAuthClient<YouTubeVideoRepository>().create(YouTubeVideoRepository::class.java)
+    private val youTubeVideoRepository: YouTubeVideoRepository =
+            BasicAuthClient<YouTubeVideoRepository>().create(YouTubeVideoRepository::class.java)
 
     fun getVideos(): LiveData<List<YouTubeVideo>> {
         return liveData(Dispatchers.IO) {
