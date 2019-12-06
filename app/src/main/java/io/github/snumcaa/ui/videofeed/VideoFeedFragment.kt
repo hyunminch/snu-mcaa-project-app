@@ -25,7 +25,7 @@ class VideoFeedFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener {
         val view = inflater.inflate(R.layout.fragment_video_feed, container, false)
 
         recyclerView = view.findViewById(R.id.video_feed_recycler_view)
-        viewModel = ViewModelProviders.of(this).get(VideoFeedViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, VideoFeedViewModelFactory(context)).get(VideoFeedViewModel::class.java)
 
         recyclerView.layoutManager = LinearLayoutManager(context)
 

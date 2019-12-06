@@ -1,4 +1,4 @@
-package io.github.snumcaa;
+package io.github.snumcaa.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,10 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import io.github.snumcaa.ProfileActivity;
+import io.github.snumcaa.R;
+import io.github.snumcaa.SettingActivity;
 
 public class MainActivity extends AppCompatActivity {
     @Override
