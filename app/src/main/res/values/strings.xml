@@ -20,8 +20,11 @@
     <string name="profile_profile_whatsUp">What\'s Up</string>
 
     <string name="title_activity_profile_setting">Setting</string>
+
     <string name="title_activity_profile_friend">Friends</string>
-    <string name="search_hint">Enter User ID</string>
+    <string name="search_hint">Enter User ID to find new friends</string>
+    <string name="title_activity_profile_friend_search">Friend Search
+        Results</string>
 
 
     <string name="settings_theme_color">Theme Color</string>
