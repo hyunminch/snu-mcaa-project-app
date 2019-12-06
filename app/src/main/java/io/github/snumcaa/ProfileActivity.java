@@ -91,8 +91,7 @@ public class ProfileActivity extends FragmentActivity {
     }
 
     private void upDateText_all(){
-        TextView user_name_top = findViewById(R.id.profile_username_top);
-        user_name_top.setText(user_info.getString("user name_show", getString(R.string.blank)));
+        upDateUserNameTop();
         TextView user = findViewById(R.id.profile_username_show);
         upDateText(user);
         TextView whatsUp = findViewById(R.id.profile_whatsUp_show);
@@ -101,8 +100,15 @@ public class ProfileActivity extends FragmentActivity {
         upDateText(bio);
     }
 
+    private  void upDateUserNameTop(){
+        TextView user_name_top = findViewById(R.id.profile_username_top);
+        user_name_top.setText(user_info.getString("user name_show", getString(R.string.blank)));
+    }
+
     private void upDateText(TextView text){
         text.setText(user_info.getString((String)text.getTag(), getString(R.string.blank)));
+        if(text.getTag().equals("user name_show"))
+            upDateUserNameTop();
     }
 
     private void setupNewAvatar(Uri imageUri){

@@ -63,9 +63,15 @@ public class ProfileFragment extends Fragment {
 
     }
 
+    private void upDateUserName(){
+        TextView usernameView = getActivity().findViewById(R.id.user_name);
+        usernameView.setText(user_info.getString("user name_show", getResources().getString(R.string.profile_default_user_name)));
+    }
+
     @Override
     public void onResume(){
         super.onResume();
         upDateAvatar();
+        upDateUserName();
     }
 }
