@@ -7,17 +7,35 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.widget.BaseAdapter;
+import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.r0adkll.slidr.Slidr;
 
+import java.util.ArrayList;
+
 public class FriendActivity extends AppCompatActivity {
+    ArrayList<Search_result> friends = new ArrayList<Search_result>();
+    ListView listView;
+    FriendAdapter friendAdapter;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_friends);
         Slidr.attach(this);
+
+        // hard coded friend list
+        for (int i = 0; i < 10; i++){
+            friends.add(new Search_result());
+        }
+
+        listView = (ListView) findViewById(R.id.friend_list_view);
+        friendAdapter = new FriendAdapter(this, friends);
+
+        listView.setAdapter(friendAdapter);
     }
 
     @Override
