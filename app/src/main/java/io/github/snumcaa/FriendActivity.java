@@ -27,7 +27,7 @@ public class FriendActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile_friends);
         Slidr.attach(this);
 
-        // hard coded friend list
+        // hard coded non-existed friend list
         for (int i = 0; i < 10; i++){
             friends.add(new Search_result());
         }
