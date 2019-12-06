@@ -78,6 +78,7 @@ class VideoFeedFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener, View.
 
         youTubeUrlEditText.clearFocus()
         videoTextEditText.clearFocus()
+        
     }
 
     override fun onClick(v: View?) {

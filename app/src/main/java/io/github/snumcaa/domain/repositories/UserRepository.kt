@@ -6,6 +6,9 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface UserRepository {
+    @GET("api/users/all")
+    suspend fun getUsers(): List<User>
+
     @POST("api/users/profile")
     suspend fun updateProfile(@Body update: ProfileUpdate): Profile
 
@@ -23,6 +26,9 @@ interface UserRepository {
 
     @POST("api/users/follow")
     suspend fun follow(@Body followed: Followed)
+
+    @POST("api/users/unfollow")
+    suspend fun unfollow(@Body followed: Followed)
 
     @GET("api/users/following")
     suspend fun getFollowing(): List<Followed>

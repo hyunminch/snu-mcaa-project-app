@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_video_feed" />
 
     <fragment
+        android:id="@+id/navigation_users"
+        android:name="io.github.snumcaa.ui.users.UsersFragment"
+        android:label="@string/title_users"
+        tools:layout="@layout/fragment_users" />
+
+    <fragment
         android:id="@+id/navigation_notifications"
         android:name="io.github.snumcaa.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"

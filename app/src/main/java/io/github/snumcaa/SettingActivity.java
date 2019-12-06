@@ -6,14 +6,16 @@ import android.widget.CompoundButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
+import com.r0adkll.slidr.Slidr;
+
 public class SettingActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_settings);
+        Slidr.attach(this); // This is to enable sliding operations
 
         SwitchCompat notifSwitch = findViewById(R.id.notif_swtich);
-
         notifSwitch.setOnCheckedChangeListener(this);
     }
 
