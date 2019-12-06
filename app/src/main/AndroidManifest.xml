@@ -38,10 +38,13 @@
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.SlidrActivityTheme">
             <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/search" />
+                android:name="android.app.default_searchable"
+                android:value=".FriendSearchResultActivity" />
         </activity>
         <activity android:name=".FriendSearchResultActivity">
+            <meta-data
+            android:name="android.app.searchable"
+            android:resource="@xml/search" />
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
