@@ -20,8 +20,6 @@ import androidx.lifecycle.ViewModelProviders;
 import io.github.snumcaa.ui.MainActivity;
 import io.github.snumcaa.R;
 
-import kotlin.Unit;
-
 public class AuthnzActivity extends AppCompatActivity implements View.OnClickListener {
     // Animation related fields
     private Animation fromBottom, backgroundMoveUp, fadeOut;
