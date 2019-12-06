@@ -18,5 +18,8 @@
     <string name="profile_profile_bio">Bio</string>
     <string name="profile_profile_whatsUp">What\'s Up</string>
     <string name="user_status_offline">offline</string>
+    <string name="user_info_storage_id">user_info_st</string>>
     <string name="blank"></string>
+    <string name="user_avatar_image">avatar</string>
+    <string name="user_avatar_image_file_name">avatar.png</string>
 </resources>
