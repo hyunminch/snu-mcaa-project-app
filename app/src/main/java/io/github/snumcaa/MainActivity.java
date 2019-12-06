@@ -2,6 +2,7 @@ package io.github.snumcaa;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,13 +30,20 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
     }
 
-    public void profileClicked(View view){
+    public void profileClicked(View view) {
         startActivity(new Intent(this, ProfileActivity.class));
         overridePendingTransition(R.anim.enter_right, R.anim.stay);
     }
 
-    public void settingClicked(View view){
+    public void settingClicked(View view) {
         startActivity(new Intent(this, SettingActivity.class));
         overridePendingTransition(R.anim.enter_right, R.anim.stay);
     }
+
+    public void friendClicked(View view) {
+        startActivity(new Intent(this, FriendActivity.class));
+        overridePendingTransition(R.anim.enter_right, R.anim.stay);
+    }
+
+
 }
