@@ -21,13 +21,13 @@
             android:orientation="vertical" >
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:tag="profile_username"
+                android:tag="user name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="onClick">
+                android:onClick="onClick_text">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/profile_username_icon"
@@ -58,7 +58,7 @@
 
                     <TextView
                         android:id="@+id/profile_username_show"
-                        android:tag="profile_username_show"
+                        android:tag="user name_show"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/profile_default_user_name"
@@ -81,8 +81,8 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="onClick"
-                android:tag="profile_whatsup">
+                android:onClick="onClick_text"
+                android:tag="What's Up message">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/profile_whatsUp_icon"
@@ -115,7 +115,7 @@
                         android:id="@+id/profile_whatsUp_show"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:tag="profile_whatsup_show"
+                        android:tag="What's Up message_show"
                         android:text="@string/blank"
                         android:textColor="#8E8E8E"
                         android:textStyle="italic"
@@ -135,8 +135,8 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:focusable="true"
-                android:onClick="onClick"
-                android:tag="profile_bio">
+                android:onClick="onClick_text"
+                android:tag="bio">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/profile_bio_icon"
@@ -169,7 +169,7 @@
                         android:id="@+id/profile_bio_show"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:tag="profile_bio_show"
+                        android:tag="bio_show"
                         android:text="@string/blank"
                         android:textColor="#8E8E8E"
                         android:textStyle="italic"

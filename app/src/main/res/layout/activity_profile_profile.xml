@@ -47,18 +47,19 @@
 
             <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/profile_profile_image"
-                android:background="?android:attr/selectableItemBackground"
                 android:layout_width="@dimen/user_icon_size_s"
                 android:layout_height="@dimen/user_icon_size_s"
                 android:layout_marginStart="10dp"
+                android:background="?android:attr/selectableItemBackground"
 
                 android:clickable="true"
                 android:contentDescription="@string/profile_profileImage_description"
                 android:focusable="true"
+                android:onClick="pickNewAvatar"
                 android:src="@drawable/usericon_24dp"
                 app:civ_border_color="#505050"
-                app:civ_border_width="5dp"
 
+                app:civ_border_width="5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

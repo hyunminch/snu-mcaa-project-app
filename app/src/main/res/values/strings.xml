@@ -20,4 +20,6 @@
     <string name="user_status_offline">offline</string>
     <string name="user_info_storage_id">user_info_st</string>>
     <string name="blank"></string>
+    <string name="user_avatar_image">avatar</string>
+    <string name="user_avatar_image_file_name">avatar.png</string>
 </resources>
