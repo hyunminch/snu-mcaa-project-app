@@ -1,15 +1,14 @@
 package io.github.snumcaa.ui.videofeed
 
-import android.app.Application
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.*
+import kotlinx.coroutines.Dispatchers
 
 import io.github.snumcaa.domain.entities.YouTubeVideo
 import io.github.snumcaa.domain.repositories.PostVideoRecommendation
 import io.github.snumcaa.domain.repositories.YouTubeVideoRepository
 import io.github.snumcaa.networking.BasicAuthClient
-import kotlinx.coroutines.Dispatchers
 
 class VideoFeedViewModel(context: Context): ViewModel() {
     private val youTubeVideoRepository: YouTubeVideoRepository =
@@ -32,11 +31,18 @@ class VideoFeedViewModel(context: Context): ViewModel() {
         return liveData(Dispatchers.IO) {
             try {
                 youTubeVideoRepository.postVideoRecommendation(PostVideoRecommendation(youTubeUrl, text))
+                val videos = youTubeVideoRepository.getVideoRecommendations()
 
+                emit(videos.map {
+                    YouTubeVideo(
+                            it.videoId,
+                            it.posterUsername,
+                            it.text
+                    )
+                })
             } catch(e: Exception) {
-
+                // TODO: handle error
             }
-
         }
     }
 

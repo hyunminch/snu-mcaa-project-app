@@ -1,6 +1,7 @@
 package io.github.snumcaa.ui.videofeed
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,18 +29,22 @@ class VideoFeedFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener, View.
     private lateinit var videoTextEditText: EditText
     private lateinit var recommendVideoButton: Button
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        viewModel = ViewModelProviders.of(this, VideoFeedViewModelFactory(context)).get(VideoFeedViewModel::class.java)
+        adapter = VideoFeedAdapter(context, viewModel)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_video_feed, container, false)
 
         recyclerView = view.findViewById(R.id.video_feed_recycler_view)
-        viewModel = ViewModelProviders.of(this, VideoFeedViewModelFactory(context)).get(VideoFeedViewModel::class.java)
-
         recyclerView.layoutManager = LinearLayoutManager(context)
 
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout)
         swipeRefreshLayout.setOnRefreshListener(this)
 
-        adapter = VideoFeedAdapter(context, viewModel)
         recyclerView.adapter = adapter
 
         youTubeUrlEditText = view.findViewById(R.id.youtube_url_edit_text)
@@ -48,12 +53,15 @@ class VideoFeedFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener, View.
 
         recommendVideoButton.setOnClickListener(this)
 
-        onRefresh()
+        if (!adapter.isInitialized())
+            onRefresh()
 
         return view
     }
 
     override fun onRefresh() {
+        Log.i("VideoFeedFragment", "OnRefresh invoked.")
+
         viewModel.getVideos()
                 .observe(this, Observer<List<YouTubeVideo>> { t ->
                     t?.let {
@@ -62,6 +70,14 @@ class VideoFeedFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener, View.
                 })
 
         swipeRefreshLayout.isRefreshing = false
+    }
+
+    fun clearEditTexts() {
+        youTubeUrlEditText.text.clear()
+        videoTextEditText.text.clear()
+
+        youTubeUrlEditText.clearFocus()
+        videoTextEditText.clearFocus()
     }
 
     override fun onClick(v: View?) {
@@ -81,6 +97,7 @@ class VideoFeedFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener, View.
                 .observe(this, Observer<List<YouTubeVideo>> { t->
                     t?.let {
                         adapter.setYouTubeVideos(it)
+                        clearEditTexts()
                     }
                 })
     }
