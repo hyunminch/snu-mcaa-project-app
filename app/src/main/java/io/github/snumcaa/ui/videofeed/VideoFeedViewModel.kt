@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.lifecycle.*
 
 import io.github.snumcaa.domain.entities.YouTubeVideo
+import io.github.snumcaa.domain.repositories.PostVideoRecommendation
 import io.github.snumcaa.domain.repositories.YouTubeVideoRepository
 import io.github.snumcaa.networking.BasicAuthClient
 import kotlinx.coroutines.Dispatchers
@@ -24,6 +25,18 @@ class VideoFeedViewModel(context: Context): ViewModel() {
                         it.text
                 )
             })
+        }
+    }
+
+    fun recommend(youTubeUrl: String, text: String?): LiveData<List<YouTubeVideo>> {
+        return liveData(Dispatchers.IO) {
+            try {
+                youTubeVideoRepository.postVideoRecommendation(PostVideoRecommendation(youTubeUrl, text))
+
+            } catch(e: Exception) {
+
+            }
+
         }
     }
 

@@ -66,7 +66,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="25dp"
-            android:text="Log in and\n Start to share!"
+            android:text="Sign up to\nstart sharing!"
             android:textColor="@android:color/white"
             android:textSize="30sp"
             android:textAlignment="center"

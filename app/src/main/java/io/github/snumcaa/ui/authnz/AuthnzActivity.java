@@ -41,7 +41,7 @@ public class AuthnzActivity extends AppCompatActivity implements View.OnClickLis
 
         checkSignedIn();
 
-        setContentView(R.layout.activity_login_splash);
+        setContentView(R.layout.activity_authnz_splash);
 
         if (getSupportActionBar() != null)
             getSupportActionBar().hide();
