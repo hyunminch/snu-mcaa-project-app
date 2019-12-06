@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.ToggleButton
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 
@@ -74,10 +75,12 @@ class UsersAdapter(val context: Context?, val viewModel: UsersViewModel, val del
 
 class UserViewHolder(inflater: LayoutInflater, parent: ViewGroup): RecyclerView.ViewHolder(inflater.inflate(R.layout.user_item, parent, false)) {
     var usernameText: TextView = itemView.findViewById(R.id.users_username_text)
-    var followButton: Button = itemView.findViewById(R.id.follow_button)
+    var followButton: ToggleButton = itemView.findViewById(R.id.follow_button)
 
     fun bind(user: User) {
         usernameText.text = user.username
-        followButton
+
+        if (user.following != followButton.isChecked)
+            followButton.toggle()
     }
 }
