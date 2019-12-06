@@ -7,6 +7,11 @@
         android:title="@string/title_video_feed" />
 
     <item
+        android:id="@+id/navigation_users"
+        android:icon="@drawable/bio_icon_24dp"
+        android:title="@string/title_users" />
+
+    <item
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/ic_notifications_black_24dp"
         android:title="@string/title_notifications" />

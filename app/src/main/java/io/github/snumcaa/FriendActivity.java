@@ -22,6 +22,7 @@ public class FriendActivity extends AppCompatActivity {
     ArrayList<Search_result> friends = new ArrayList<Search_result>();
     ListView listView;
     FriendAdapter friendAdapter;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_friends);

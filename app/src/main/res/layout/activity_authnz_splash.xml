@@ -6,7 +6,7 @@
     android:id="@+id/loginLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".ui.authnz.AuthnzActivity">
 
     <ImageView
         android:id="@+id/vicon"
@@ -66,7 +66,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="25dp"
-            android:text="Log in and\n Start to share!"
+            android:text="Sign up to\nstart sharing!"
             android:textColor="@android:color/white"
             android:textSize="30sp"
             android:textAlignment="center"
@@ -115,11 +115,11 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="15dp"
                 android:text="Password"
-                app:layout_constraintStart_toStartOf="@+id/userPassword"
+                app:layout_constraintStart_toStartOf="@+id/password"
                 app:layout_constraintTop_toBottomOf="@+id/username" />
 
             <EditText
-                android:id="@+id/userPassword"
+                android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"

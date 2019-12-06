@@ -2,9 +2,13 @@
     <string name="app_name">videosharex</string>
 
     <string name="title_video_feed">Video Feed</string>
+    <string name="title_users">Users</string>
     <string name="title_profile">Profile</string>
     <string name="title_notifications">Notifications</string>
-    <string name="share_button">SHARE</string>
+    <string name="recommend_button">Recommend</string>
+    <string name="follow_button">Follow</string>
+    <string name="unfollow_button">Followed</string>
+    <string name="share_button">Share</string>
 
     <string name="profile_button_profile">Profile</string>
     <string name="profile_button_friends">Friends</string>
@@ -23,9 +27,7 @@
     <string name="title_activity_profile_friend">Friends</string>
     <string name="search_hint">Enter User ID</string>
 
-
     <string name="settings_theme_color">Theme Color</string>
-
 
     <string name="user_status_offline">offline</string>
     <string name="user_info_storage_id">user_info_st</string>>

@@ -14,11 +14,17 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.You
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
 class VideoFeedAdapter(val context: Context?, val viewModel: VideoFeedViewModel): RecyclerView.Adapter<YouTubeVideoViewHolder>() {
+    var set: Boolean = false
     var videos: List<YouTubeVideo> = emptyList()
 
     fun setYouTubeVideos(videos: List<YouTubeVideo>) {
         this.videos = videos
+        set = true
         notifyDataSetChanged()
+    }
+
+    fun isInitialized(): Boolean {
+        return set
     }
 
     override fun getItemCount(): Int {
