@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
-    public void profileClicked(View view){
+    public void profileClicked(View view) {
         startActivity(new Intent(this, ProfileActivity.class));
         overridePendingTransition(R.anim.enter_right, R.anim.stay);
     }
@@ -48,4 +49,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, SettingActivity.class));
         overridePendingTransition(R.anim.enter_right, R.anim.stay);
     }
+
+    public void friendClicked(View view) {
+        startActivity(new Intent(this, FriendActivity.class));
+        overridePendingTransition(R.anim.enter_right, R.anim.stay);
+    }
+
+
 }
