@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+
         this.userInfo = buildUserInfo();
     }
 
@@ -44,7 +45,18 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.enter_right, R.anim.stay);
     }
 
-    private UserInfo buildUserInfo(){return new UserInfo();}
+    private UserInfo buildUserInfo(){
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.user_info_storage_id), MODE_PRIVATE);
+        String userName = sharedPreferences.getString("user name", null);
+        if(userName == null) {
+            return new UserInfo();
+        }
+        return new UserInfo(sharedPreferences.getInt("user id", 8353),
+                userName,
+                sharedPreferences.getString("What's Up message", ""),
+                sharedPreferences.getString("bio", ""));
+
+    }
 
     public UserInfo getUserInfo(){return userInfo;}
 

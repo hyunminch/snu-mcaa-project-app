@@ -58,6 +58,13 @@ public class ProfileActivity extends FragmentActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String input = edit.getText().toString();
+                if(!verifyChange(v_tag, input)){
+                    Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.user_info_storage_id), MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString(v_tag, input);
                 userInfo.update(v_tag, input);
                 upDateText(showView);
                 Toast.makeText(context, "successful", Toast.LENGTH_SHORT).show();
@@ -84,6 +91,9 @@ public class ProfileActivity extends FragmentActivity {
 //    public void onSelectImageClick(View view){
 //        CropImage.startPickImageActivity(this);
 //    }
+    private boolean verifyChange(String type, String value){
+        return true;
+    }
 
     private void upDateText_all(){
         upDateUserNameTop();
