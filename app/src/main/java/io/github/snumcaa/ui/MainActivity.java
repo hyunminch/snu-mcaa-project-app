@@ -12,11 +12,8 @@ import androidx.navigation.ui.NavigationUI;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import io.github.snumcaa.R;
-import io.github.snumcaa.UserInfo;
 
 public class MainActivity extends AppCompatActivity {
-    private UserInfo userInfo;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,32 +25,5 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
-        this.userInfo = buildUserInfo();
-    }
-
-    private UserInfo buildUserInfo() {
-        SharedPreferences sharedPreferences = getSharedPreferences("VIDEOSHAREX_PREFS", MODE_PRIVATE);
-
-        String username = sharedPreferences.getString("username", null);
-        if (username == null) {
-            return new UserInfo();
-        }
-
-        String password = sharedPreferences.getString("password", null);
-        if (password == null)
-            password = "12345678";
-
-        String bio = "This is a nonexistent bio message for debug usage";
-
-        return new UserInfo(username, bio, password);
-    }
-
-    public UserInfo getUserInfo(){return userInfo;}
-
-
-    // To communicate with the server about the changes
-    private boolean verifyChange(String type, String value){
-        return true;
     }
 }
