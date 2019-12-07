@@ -3,8 +3,9 @@ package io.github.snumcaa.ui.profile;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Bitmap;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,107 +14,99 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.mikhaellopez.circularimageview.CircularImageView;
-
-import io.github.snumcaa.UserInfo;
-import io.github.snumcaa.ui.MainActivity;
 import io.github.snumcaa.R;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class ProfileFragment extends Fragment {
-    private UserInfo userInfo;
-    private View root;
-    private Context context;
-    private ProfileViewModel profileViewModel;
+    private ProfileViewModel viewModel;
+    private TextView usernameTextView;
+    private TextView profileBioTextView;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        viewModel = ViewModelProviders.of(this, new ProfileViewModelFactory(getContext())).get(ProfileViewModel.class);
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
-        root = inflater.inflate(R.layout.fragment_profile, container, false);
-        context = getContext();
-        MainActivity main = (MainActivity) getActivity();
-        userInfo = main.getUserInfo();
-        setupAll();
-        return root;
+        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        usernameTextView = view.findViewById(R.id.profile_username_top);
+        initializeUsernameTextView();
+
+        profileBioTextView = view.findViewById(R.id.profile_bio_show);
+        profileBioTextView.setOnClickListener(v -> onBioClick());
+
+        viewModel.getProfile()
+                .observe(this, profile -> {
+                    if (profile == null) {
+
+                    } else {
+                        Log.i("ProfileFragment", "Setting profile text.");
+                        profileBioTextView.setText(profile.getProfile());
+                    }
+                });
+
+        return view;
     }
 
-    public void onClick_text(View v){
-        final String v_tag = v.getTag().toString();
-        final String tag_show = v_tag + "_show";
-        final TextView showView = v.findViewWithTag(tag_show);
-        final Context context = getContext();
+    private void initializeUsernameTextView() {
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("VIDEOSHAREX_PREFS", MODE_PRIVATE);
+
+        String username = sharedPreferences.getString("username", "");
+        usernameTextView.setText(username);
+    }
+
+    private void updateProfile(String profile) {
+        viewModel.updateProfile(profile)
+                .observe(this, _profile -> {
+                    if (_profile == null) {
+                        Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), "Profile Updated", Toast.LENGTH_SHORT).show();
+                        profileBioTextView.setText(_profile.getProfile());
+                    }
+                });
+    }
+
+    private void onBioClick() {
+        Context context = getContext();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("input new "+v_tag);
-        final EditText edit = new EditText(context);
-        builder.setView(edit);
-        final UserInfo userInfo_temp = userInfo;
+        builder.setTitle("Input new bio!");
+
+        final EditText editText = new EditText(context);
+        builder.setView(editText);
+
         builder.setPositiveButton("Enter", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                String input = edit.getText().toString();
-                if(!verifyChange(v_tag, input)){
-                    Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                userInfo.update(v_tag, input);
-                upDateText(showView);
-                Toast.makeText(context, "successful", Toast.LENGTH_SHORT).show();
+                String newProfile = editText.getText().toString();
+                updateProfile(newProfile);
             }
         });
+
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(context, "canceled", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Canceled", Toast.LENGTH_SHORT).show();
             }
         });
+
         builder.setCancelable(true);
         AlertDialog dialog = builder.create();
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
     }
 
-    private boolean verifyChange(String type, String value){
-        //TODO: to verify changes wih the server
+    private boolean verifyChange(String type, String value) {
+        // TODO: to verify changes wih the server
         return true;
-    }
-
-    private void setupAll(){
-        upDateText_all();
-        View bio = root.findViewWithTag("bio");
-        bio.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onClick_text(view);
-            }
-        });
-        View password = root.findViewWithTag("password");
-        password.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                onClick_text(view);
-            }
-        });
-        upDateAvatar();
-    }
-
-    private void upDateText_all(){
-        TextView user = root.findViewWithTag("user_name");
-        upDateText(user);
-        TextView bio = root.findViewById(R.id.profile_bio_show);
-        upDateText(bio);
-        TextView password = root.findViewById(R.id.profile_password_show);
-        upDateText(password);
-    }
-
-    private void upDateText(TextView text){
-        text.setText(userInfo.getText((String)text.getTag()));
-    }
-
-    private void upDateAvatar(){
-        Bitmap avatar = userInfo.user_avatar;
-        CircularImageView avatarView = root.findViewById(R.id.profile_profile_image);
-        avatarView.setImageBitmap(avatar);
     }
 }

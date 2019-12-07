@@ -32,23 +32,21 @@ public class MainActivity extends AppCompatActivity {
         this.userInfo = buildUserInfo();
     }
 
-    private UserInfo buildUserInfo(){
+    private UserInfo buildUserInfo() {
         SharedPreferences sharedPreferences = getSharedPreferences("VIDEOSHAREX_PREFS", MODE_PRIVATE);
-        String userName = sharedPreferences.getString("username", null);
-        if(userName == null) {
+
+        String username = sharedPreferences.getString("username", null);
+        if (username == null) {
             return new UserInfo();
         }
+
         String password = sharedPreferences.getString("password", null);
-        if(password == null)
+        if (password == null)
             password = "12345678";
-        //UserRepository userRepository = new BasicAuthClient<UserRepository>().createAuth(UserRepository.class, this);
-        //String bio = userRepository.getProfile();
-        // TODO: get bio
+
         String bio = "This is a nonexistent bio message for debug usage";
-        return new UserInfo(
-                userName,
-                bio,
-                password);
+
+        return new UserInfo(username, bio, password);
     }
 
     public UserInfo getUserInfo(){return userInfo;}

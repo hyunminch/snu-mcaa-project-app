@@ -10,7 +10,7 @@
     <string name="unfollow_button">Followed</string>
     <string name="share_button">Share</string>
 
-    <string name="profile_profileImage_description">User\'s avatar</string>
+    <string name="profile_image_description">User\'s avatar</string>
     <string name="profile_default_user_name">New User</string>
 
     <string name="title_activity_profile_profile">Profile</string>

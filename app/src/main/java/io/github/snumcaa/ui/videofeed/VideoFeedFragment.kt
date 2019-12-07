@@ -18,7 +18,6 @@ import io.github.snumcaa.R
 import io.github.snumcaa.domain.entities.YouTubeVideo
 
 class VideoFeedFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
-
     private lateinit var viewModel: VideoFeedViewModel
 
     private lateinit var recyclerView: RecyclerView
