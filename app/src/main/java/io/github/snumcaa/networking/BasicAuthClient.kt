@@ -9,6 +9,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class BasicAuthClient<T> {
+//    val serverUrl: String = "http://10.0.2.2:8000"
+    val serverUrl: String = "http://35.230.245.253:8000"
+
     val gson = GsonBuilder()
             .setLenient()
             .create()
@@ -17,7 +20,7 @@ class BasicAuthClient<T> {
         val client =  OkHttpClient.Builder().build()
 
         val retrofit = Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000")
+                .baseUrl(serverUrl)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
@@ -28,8 +31,8 @@ class BasicAuthClient<T> {
     fun createAuth(service: Class<T>, context: Context): T {
         val preferences = context.getSharedPreferences("VIDEOSHAREX_PREFS", MODE_PRIVATE)
 
-        val username = preferences.getString("username", null)
-        val password = preferences.getString("password", null)
+        val username = preferences.getString("username", "")
+        val password = preferences.getString("password", "")
 
         if (username is String && password is String) {
             val client =  OkHttpClient.Builder()
@@ -37,7 +40,7 @@ class BasicAuthClient<T> {
                     .build()
 
             val retrofit = Retrofit.Builder()
-                    .baseUrl("http://10.0.2.2:8000")
+                    .baseUrl(serverUrl)
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build()
@@ -47,7 +50,7 @@ class BasicAuthClient<T> {
             val client =  OkHttpClient.Builder().build()
 
             val retrofit = Retrofit.Builder()
-                    .baseUrl("http://10.0.2.2:8000")
+                    .baseUrl(serverUrl)
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .build()
