@@ -38,6 +38,8 @@ public class AuthnzActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         onSignedIn();
 
+        flushCredentials();
+
         viewModel = ViewModelProviders.of(this).get(AuthnzViewModel.class);
 
         checkSignedIn();
@@ -66,6 +68,16 @@ public class AuthnzActivity extends AppCompatActivity implements View.OnClickLis
         textHome.startAnimation(fromBottom);
 
         signUpButton.setOnClickListener(this);
+    }
+
+    public void flushCredentials() {
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences("VIDEOSHAREX_PREFS", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        editor.remove("username");
+        editor.remove("password");
+
+        editor.apply();
     }
 
     public void signUp() {

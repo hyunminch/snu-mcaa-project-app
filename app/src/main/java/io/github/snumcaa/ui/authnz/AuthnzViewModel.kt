@@ -18,11 +18,19 @@ class AuthnzViewModel: ViewModel() {
     fun signUp(username: String, password: String): LiveData<SignUpResult> {
         return liveData(Dispatchers.IO) {
             try {
-                userRepository.signUp(SignUp(username, password))
+                val authRepository = BasicAuthClient<UserRepository>().createTempAuth(UserRepository::class.java, username, password)
+                authRepository.signIn()
                 emit(SignUpResult(false))
             } catch (e: Exception) {
-                Log.i("AuthnzViewModel", e.message ?: "")
-                emit(SignUpResult(true))
+                Log.i("AuthnzViewModel", "Signin failed. Resorting to signup.")
+
+                try {
+                    userRepository.signUp(SignUp(username, password))
+                    emit(SignUpResult(false))
+                } catch (e: Exception) {
+                    Log.i("AuthnzViewModel", e.message ?: "")
+                    emit(SignUpResult(true))
+                }
             }
         }
     }
