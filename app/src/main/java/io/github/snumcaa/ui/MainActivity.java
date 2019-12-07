@@ -1,12 +1,7 @@
 package io.github.snumcaa.ui;
 
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -16,10 +11,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import io.github.snumcaa.FriendActivity;
-import io.github.snumcaa.ProfileActivity;
 import io.github.snumcaa.R;
-import io.github.snumcaa.SettingActivity;
 import io.github.snumcaa.UserInfo;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,37 +32,30 @@ public class MainActivity extends AppCompatActivity {
         this.userInfo = buildUserInfo();
     }
 
-    public void profileClicked(View view) {
-        Intent intent = new Intent(this, ProfileActivity.class);
-        Log.d("MainActivity","Trying to put extra");
-        intent.putExtra("userInfo", userInfo);
-        Log.d("MainActivity", "Put completed");
-        startActivity(intent);
-        overridePendingTransition(R.anim.enter_right, R.anim.stay);
-    }
-
     private UserInfo buildUserInfo(){
-        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.user_info_storage_id), MODE_PRIVATE);
-        String userName = sharedPreferences.getString("user name", null);
+        SharedPreferences sharedPreferences = getSharedPreferences("VIDEOSHAREX_PREFS", MODE_PRIVATE);
+        String userName = sharedPreferences.getString("username", null);
         if(userName == null) {
             return new UserInfo();
         }
-        return new UserInfo(sharedPreferences.getInt("user id", 8353),
+        String password = sharedPreferences.getString("password", null);
+        if(password == null)
+            password = "12345678";
+        //UserRepository userRepository = new BasicAuthClient<UserRepository>().createAuth(UserRepository.class, this);
+        //String bio = userRepository.getProfile();
+        // TODO: get bio
+        String bio = "This is a nonexistent bio message for debug usage";
+        return new UserInfo(
                 userName,
-                sharedPreferences.getString("What's Up message", ""),
-                sharedPreferences.getString("bio", ""));
-
+                bio,
+                password);
     }
 
     public UserInfo getUserInfo(){return userInfo;}
 
-    public void settingClicked(View view){
-        startActivity(new Intent(this, SettingActivity.class));
-        overridePendingTransition(R.anim.enter_right, R.anim.stay);
-    }
 
-    public void friendClicked(View view) {
-        startActivity(new Intent(this, FriendActivity.class));
-        overridePendingTransition(R.anim.enter_right, R.anim.stay);
+    // To communicate with the server about the changes
+    private boolean verifyChange(String type, String value){
+        return true;
     }
 }
