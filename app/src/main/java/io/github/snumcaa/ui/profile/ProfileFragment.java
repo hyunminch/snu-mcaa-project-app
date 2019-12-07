@@ -1,10 +1,7 @@
 package io.github.snumcaa.ui.profile;
 
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,13 +13,12 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 
-import java.io.IOException;
-
+import io.github.snumcaa.UserInfo;
 import io.github.snumcaa.ui.MainActivity;
 import io.github.snumcaa.R;
 
 public class ProfileFragment extends Fragment {
-    private SharedPreferences userInfo;
+    private UserInfo userInfo;
     private View root;
 
     private ProfileViewModel profileViewModel;
@@ -36,28 +32,12 @@ public class ProfileFragment extends Fragment {
         userInfo = main.getUserInfo();
         updateAvatar();
         TextView username = root.findViewById(R.id.user_name);
-        username.setText(userInfo.getString("user name_show", getString(R.string.blank)));
+        username.setText(userInfo.user_name);
         return root;
     }
 
     private void updateAvatar() {
-        String imageUriString = userInfo.getString(getResources().getString(R.string.user_avatar_image), null);
-
-        if (imageUriString == null)
-            return;
-
-        Uri imageUri = Uri.parse(imageUriString);
-        Bitmap avatar;
-
-        try {
-            avatar = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), imageUri);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return;
-        }
-
-        if (avatar == null)
-            return;
+        Bitmap avatar = userInfo.user_avatar;
 
         CircularImageView avatarView = root.findViewById(R.id.profile_image);
         avatarView.setImageBitmap(avatar);
@@ -65,7 +45,7 @@ public class ProfileFragment extends Fragment {
 
     private void upDateUserName(){
         TextView usernameView = getActivity().findViewById(R.id.user_name);
-        usernameView.setText(userInfo.getString("user name_show", getResources().getString(R.string.profile_default_user_name)));
+        usernameView.setText(userInfo.user_name);
     }
 
     @Override

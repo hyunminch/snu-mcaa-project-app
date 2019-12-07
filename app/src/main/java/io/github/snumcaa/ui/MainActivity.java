@@ -18,9 +18,10 @@ import io.github.snumcaa.FriendActivity;
 import io.github.snumcaa.ProfileActivity;
 import io.github.snumcaa.R;
 import io.github.snumcaa.SettingActivity;
+import io.github.snumcaa.UserInfo;
 
 public class MainActivity extends AppCompatActivity {
-    private SharedPreferences userInfo;
+    private UserInfo userInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,21 +34,19 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-
-        this.userInfo = this.getSharedPreferences(
-                getString(R.string.user_info_storage_id),
-                Context.MODE_PRIVATE
-        );
+        this.userInfo = buildUserInfo();
     }
 
     public void profileClicked(View view) {
-        startActivity(new Intent(this, ProfileActivity.class));
+        Intent intent = new Intent(this, ProfileActivity.class);
+        intent.putExtra("userInfo", userInfo);
+        startActivity(intent);
         overridePendingTransition(R.anim.enter_right, R.anim.stay);
     }
 
-    public SharedPreferences getUserInfo(){
-        return userInfo;
-    }
+    private UserInfo buildUserInfo(){return new UserInfo();}
+
+    public UserInfo getUserInfo(){return userInfo;}
 
     public void settingClicked(View view){
         startActivity(new Intent(this, SettingActivity.class));
