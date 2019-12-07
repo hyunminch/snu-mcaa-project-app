@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.media.MediaMetadataRetriever;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -37,28 +38,29 @@ public class UserInfo implements Parcelable {
     }
 
     public String getText(String target){
-        if(target.equals("user_name"))
+        if(target.contains("user_name"))
             return user_name;
-        else if(target.equals("What's Up message"))
+        else if(target.contains("What's Up message"))
             return user_whatsUp;
-        else if(target.equals("bio"))
+        else if(target.contains("bio"))
             return user_bio;
         return "";
     }
 
     private Bitmap buildAvatar(){
-        String text = user_name;
-        float textSize = 24;
+        String text = user_name.substring(0, 1);
+        float textSize = 300;
         Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setTextSize(textSize);
-        paint.setColor(Color.WHITE);
-        paint.setTextAlign(Paint.Align.LEFT);
-        float baseline = -paint.ascent();
-        int width = (int) (paint.measureText(text) + 0.5f);
-        int height = (int) (baseline + paint.descent() + 0.5f);
+        paint.setColor(Color.BLACK);
+        //paint.setTextAlign(Paint.Align.LEFT);
+        float baseline = -paint.ascent(); // ascent() is negative
+        int width = 400;//(int) (paint.measureText(text) + 0.5f);
+        int height = 400;//(int) (baseline + paint.descent() + 0.5f);
         Bitmap image = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(image);
-        canvas.drawText(text, 0, baseline, paint);
+        canvas.drawText(text, width/2-paint.measureText(text)/2, height/2+baseline/3, paint);
+        //image = Bitmap.createScaledBitmap(image, 400, 400, false);
         return image;
     }
 

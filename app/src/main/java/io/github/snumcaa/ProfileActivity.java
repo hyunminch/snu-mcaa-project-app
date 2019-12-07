@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -32,7 +33,9 @@ public class ProfileActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_profile);
         Slidr.attach(this);
-        userInfo = savedInstanceState.getParcelable("userInfo");
+        Log.d("ProfileActivity", "trying to get userInfo");
+        userInfo = getIntent().getParcelableExtra("userInfo");
+        Log.d("ProfileActivity", "read userInfo succeeded");
         upDateText_all();
         upDateAvatar();
         CircularImageView image = (CircularImageView)findViewById(R.id.profile_profile_image);

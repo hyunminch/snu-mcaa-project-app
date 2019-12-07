@@ -28,7 +28,7 @@ public class ProfileFragment extends Fragment {
         profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
         root = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        MainActivity main = (MainActivity) getContext();
+        MainActivity main = (MainActivity) getActivity();
         userInfo = main.getUserInfo();
         updateAvatar();
         TextView username = root.findViewById(R.id.user_name);

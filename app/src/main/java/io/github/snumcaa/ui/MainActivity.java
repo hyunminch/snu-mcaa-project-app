@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -40,7 +42,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void profileClicked(View view) {
         Intent intent = new Intent(this, ProfileActivity.class);
+        Log.d("MainActivity","Trying to put extra");
         intent.putExtra("userInfo", userInfo);
+        Log.d("MainActivity", "Put completed");
         startActivity(intent);
         overridePendingTransition(R.anim.enter_right, R.anim.stay);
     }

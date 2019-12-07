@@ -36,6 +36,7 @@ public class AuthnzActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        onSignedIn();
 
         viewModel = ViewModelProviders.of(this).get(AuthnzViewModel.class);
 
