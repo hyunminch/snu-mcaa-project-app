@@ -78,6 +78,7 @@ public class AuthnzActivity extends AppCompatActivity implements View.OnClickLis
                     public void onChanged(SignUpResult result) {
                         if (result.getFailed()) {
                             // TODO: do something
+                            Log.i("AuthnzActivity", "SignUp failed.");
                         } else {
                             onSignedUp(usernameText, passwordText);
                         }

@@ -13,7 +13,6 @@ import kotlinx.coroutines.Dispatchers
 
 class AuthnzViewModel: ViewModel() {
     private val userRepository: UserRepository =
-
             BasicAuthClient<UserRepository>().createNoAuth(UserRepository::class.java)
 
     fun signUp(username: String, password: String): LiveData<SignUpResult> {
@@ -22,6 +21,7 @@ class AuthnzViewModel: ViewModel() {
                 userRepository.signUp(SignUp(username, password))
                 emit(SignUpResult(false))
             } catch (e: Exception) {
+                Log.i("AuthnzViewModel", e.message ?: "")
                 emit(SignUpResult(true))
             }
         }
