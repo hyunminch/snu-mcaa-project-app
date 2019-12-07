@@ -28,6 +28,20 @@ class BasicAuthClient<T> {
         return retrofit.create(service)
     }
 
+    fun createTempAuth(service: Class<T>, username: String, password: String): T {
+        val client =  OkHttpClient.Builder()
+                .addInterceptor(BasicAuthInterceptor(username, password))
+                .build()
+
+        val retrofit = Retrofit.Builder()
+                .baseUrl(serverUrl)
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build()
+
+        return retrofit.create(service)
+    }
+
     fun createAuth(service: Class<T>, context: Context): T {
         val preferences = context.getSharedPreferences("VIDEOSHAREX_PREFS", MODE_PRIVATE)
 
