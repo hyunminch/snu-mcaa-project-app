@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/navigation_users"
-        android:icon="@drawable/bio_icon_24dp"
+        android:icon="@drawable/password_icon_24dp"
         android:title="@string/title_users" />
 
     <item

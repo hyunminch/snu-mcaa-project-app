@@ -138,6 +138,7 @@ public class AuthnzActivity extends AppCompatActivity implements View.OnClickLis
     public void proceedToMain() {
         Intent intent = new Intent(AuthnzActivity.this, MainActivity.class);
         startActivity(intent);
+        this.finish();
     }
 
     @Override
