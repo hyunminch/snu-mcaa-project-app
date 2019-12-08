@@ -92,9 +92,10 @@ class YouTubeVideoViewHolder(inflater: LayoutInflater, parent: ViewGroup): Recyc
         youTubePlayer?.cueVideo(youTubeVideo.videoId, 0f)
 
         videoItemShareButton.text = if (youTubeVideo.shared) "Shared" else "Share"
-        videoItemShareButton.setOnClickListener {
-            onVideoShareListener?.onVideoShare(youTubeVideo)
-        }
+        if (!youTubeVideo.shared)
+            videoItemShareButton.setOnClickListener {
+                onVideoShareListener?.onVideoShare(youTubeVideo)
+            }
     }
 
     interface OnVideoShareListener {
