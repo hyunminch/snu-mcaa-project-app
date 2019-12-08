@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -89,7 +90,6 @@ class VideoFeedFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener, View.
 
         youTubeUrlEditText.clearFocus()
         videoTextEditText.clearFocus()
-
     }
 
     override fun onClick(v: View?) {
@@ -104,19 +104,30 @@ class VideoFeedFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener, View.
                 rawText
         }()
 
-        viewModel
-                .recommend(youTubeUrl, text)
-                .observe(this, Observer { result ->
-                    when (result) {
-                        is Result.Success -> {
-                            adapter.setYouTubeVideos(result.data)
-                            clearEditTexts()
+        val pattern = "^(?:(?:\\w*.?://)?\\w*.?\\w*-?.?\\w*/(?:embed|e|v|watch|.*/)?\\??(?:feature=\\w*\\.?\\w*)?&?(?:v=)?/?)([\\w\\d_-]+).*".toRegex()
+
+        val found = pattern.findAll(youTubeUrl).toList()
+
+        if (found.isEmpty()) {
+            val toast = Toast.makeText(context, "Invalid URL", Toast.LENGTH_SHORT)
+            toast.show()
+        } else {
+            val videoId = found.first().groupValues[1]
+
+            viewModel
+                    .recommend(videoId, text)
+                    .observe(this, Observer { result ->
+                        when (result) {
+                            is Result.Success -> {
+                                adapter.setYouTubeVideos(result.data)
+                                clearEditTexts()
+                            }
+                            is Result.Error -> {
+                                // TODO Error Handling
+                            }
                         }
-                        is Result.Error -> {
-                            // TODO Error Handling
-                        }
-                    }
-                })
+                    })
+        }
     }
 
     private fun shareVideo(youTubeVideo: YouTubeVideo) {
