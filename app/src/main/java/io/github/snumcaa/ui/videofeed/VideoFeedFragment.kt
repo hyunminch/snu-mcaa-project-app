@@ -16,6 +16,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 import io.github.snumcaa.R
 import io.github.snumcaa.domain.entities.YouTubeVideo
+import io.github.snumcaa.networking.Result
 
 class VideoFeedFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener, View.OnClickListener {
     private lateinit var viewModel: VideoFeedViewModel
@@ -32,7 +33,13 @@ class VideoFeedFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener, View.
         super.onCreate(savedInstanceState)
 
         viewModel = ViewModelProviders.of(this, VideoFeedViewModelFactory(context)).get(VideoFeedViewModel::class.java)
-        adapter = VideoFeedAdapter(context, viewModel)
+        adapter = VideoFeedAdapter(context, viewModel).apply {
+            videoFeedItemListener = object : VideoFeedAdapter.VideoFeedItemListener {
+                override fun onVideoShare(youTubeVideo: YouTubeVideo) {
+                    shareVideo(youTubeVideo)
+                }
+            }
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -62,9 +69,14 @@ class VideoFeedFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener, View.
         Log.i("VideoFeedFragment", "OnRefresh invoked.")
 
         viewModel.getVideos()
-                .observe(this, Observer<List<YouTubeVideo>> { t ->
-                    t?.let {
-                        adapter.setYouTubeVideos(it)
+                .observe(this, Observer { result ->
+                    when (result) {
+                        is Result.Success -> {
+                            adapter.setYouTubeVideos(result.data)
+                        }
+                        is Result.Error -> {
+                            // TODO Error Handling
+                        }
                     }
                 })
 
@@ -77,7 +89,7 @@ class VideoFeedFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener, View.
 
         youTubeUrlEditText.clearFocus()
         videoTextEditText.clearFocus()
-        
+
     }
 
     override fun onClick(v: View?) {
@@ -94,12 +106,30 @@ class VideoFeedFragment: Fragment(), SwipeRefreshLayout.OnRefreshListener, View.
 
         viewModel
                 .recommend(youTubeUrl, text)
-                .observe(this, Observer<List<YouTubeVideo>> { t->
-                    t?.let {
-                        adapter.setYouTubeVideos(it)
-                        clearEditTexts()
+                .observe(this, Observer { result ->
+                    when (result) {
+                        is Result.Success -> {
+                            adapter.setYouTubeVideos(result.data)
+                            clearEditTexts()
+                        }
+                        is Result.Error -> {
+                            // TODO Error Handling
+                        }
+                    }
+                })
+    }
+
+    private fun shareVideo(youTubeVideo: YouTubeVideo) {
+        viewModel.share(youTubeVideo)
+                .observe(this, Observer { result ->
+                    when (result) {
+                        is Result.Success -> {
+                            adapter.updateItem(result.data)
+                        }
+                        is Result.Error -> {
+                            // TODO Error Handling
+                        }
                     }
                 })
     }
 }
-

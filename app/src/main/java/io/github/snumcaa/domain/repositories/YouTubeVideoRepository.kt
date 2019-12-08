@@ -12,6 +12,5 @@ interface YouTubeVideoRepository {
     suspend fun postVideoRecommendation(@Body postVideoRecommendation: PostVideoRecommendation): YouTubeVideoRecommendationShare
 
     @POST("api/videos/recommendation/share")
-    suspend fun shareVideoRecommendation(@Body shareVideoRecommendation: ShareVideoRecommendation): YouTubeVideoRecommendationShare
-
+    suspend fun shareVideoRecommendation(@Body shareVideoRecommendation: ShareVideoRecommendation): YouTubeVideoRecommendation
 }

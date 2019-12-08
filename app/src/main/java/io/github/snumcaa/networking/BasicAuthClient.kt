@@ -1,6 +1,5 @@
 package io.github.snumcaa.networking
 
-import android.accounts.AccountManager
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import com.google.gson.GsonBuilder
