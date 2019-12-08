@@ -32,10 +32,9 @@ class NotificationsAdapter(private val context: Context) : RecyclerView.Adapter<
 }
 
 class NotificationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
     private val notificationTextView: TextView = itemView.findViewById(R.id.notification_text_view)
 
     fun bind(notification: Notification) {
-        notificationTextView.text = notification.message
+        notificationTextView.text = "Video [" + notification.message + "] was liked by " + notification.sharedCount + " people!"
     }
 }

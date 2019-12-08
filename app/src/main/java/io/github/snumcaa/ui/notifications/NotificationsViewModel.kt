@@ -2,12 +2,13 @@ package io.github.snumcaa.ui.notifications
 
 import android.content.Context
 import androidx.lifecycle.*
+import kotlinx.coroutines.Dispatchers
+
 import io.github.snumcaa.domain.entities.Notification
 import io.github.snumcaa.domain.repositories.NotificationRepository
 import io.github.snumcaa.domain.repositories.NotificationResponse
 import io.github.snumcaa.networking.BasicAuthClient
 import io.github.snumcaa.networking.Result
-import kotlinx.coroutines.Dispatchers
 
 class NotificationsViewModel(private val repository: NotificationRepository) : ViewModel() {
     fun loadNotifications(): LiveData<Result<List<Notification>>> {
